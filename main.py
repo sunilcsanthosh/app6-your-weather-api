@@ -2,12 +2,11 @@ from flask import Flask,render_template # here "Flask" is a class
 import pandas as pd
 app = Flask("__name__")  # here "app" is website object
 
+stations = pd.read_csv("data_small/stations.txt",skiprows=20)
 
 @app.route("/")
 def home():
-    return render_template("home.html")
-
-
+    return render_template("home.html",data =stations)
 
 @app.route("/api/v1/<station>/<date>")
 def about(station,date):
